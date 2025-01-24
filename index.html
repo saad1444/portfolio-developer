@@ -1,0 +1,553 @@
+
+               <!-- Portfolio for a  Developer
+            Features: Work samples, about me, and contact information. -->
+
+
+
+
+
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Developer Portfolio</title>
+                <style>
+                    * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        font-family: Arial, sans-serif;
+                    }
+            
+                    body {
+                        background-color: #f4f4f4;
+                        color: #333;
+                        line-height: 1.6;
+                    }
+            
+                    header {
+                        background-color: #333;
+                        color: white;
+                        padding: 20px 0;
+                        text-align: center;
+                    }
+            
+                    /* Navbar Styling */
+            nav {
+                background-color: #333; /* Dark background for better contrast */
+                color: white;
+                padding: 15px 0;
+                text-align: center;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+                border-bottom: 4px solid #ff8c00; /* Slightly thicker border for better visibility */
+            }
+            
+            /* Navbar List */
+            nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                margin: 0;
+                padding: 0;
+            }
+            
+            /* Navbar List Items */
+            nav ul li {
+                margin: 0 30px;
+                position: relative; /* Required for positioning the underline */
+                font-size: 18px;
+                font-weight: 600; /* Slightly bolder font weight */
+            }
+            
+            /* Navbar Links */
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 500; /* Standard font weight */
+                transition: color 0.3s ease, transform 0.3s ease, padding-bottom 0.3s ease; /* Smooth transitions */
+                position: relative; /* Position needed for the pseudo-element */
+            }
+            
+            /* Hover Effect for Links */
+            nav ul li a:hover {
+                color: #ff8c00; /* Bright orange color on hover */
+                transform: translateY(-3px); /* Lift effect */
+                padding-bottom: 5px; /* Adds spacing between the text and underline */
+            }
+            
+            /* Underline Effect on Hover */
+            nav ul li a::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 3px;
+                background-color: #ff8c00; /* Underline color */
+                transition: width 0.3s ease; /* Smooth transition for the underline */
+            }
+            
+            /* On Hover, underline expands smoothly */
+            nav ul li a:hover::before {
+                width: 100%; /* Full width on hover */
+            }
+            
+            /* Active Link State (optional for the current page highlight) */
+            nav ul li a.active {
+                color: #ff8c00; /* Active color */
+                font-weight: 600; /* Bold the active link */
+            }
+            
+            
+                    .section {
+                        display: none;
+                        padding: 20px;
+                        margin: 20px auto;
+                        max-width: 1200px;
+                    }
+            
+                    .section.active {
+                        display: block;
+                    }
+            
+                    .work-samples {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 20px;
+                    }
+            
+                    .work-samples img {
+                        width: 100%;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    }
+            
+                    .work-samples .item img {
+                width: 320px;         /* Fixed width of 320px */
+                height: 320px;        /* Fixed height of 320px */
+                object-fit: cover;    /* Ensures images cover the area without distortion */
+                border-radius: 8px;   /* Optional: Adds rounded corners */
+            }
+            
+            .work-samples .item img {
+                width: 320px;           /* Fixed width of 320px */
+                height: 320px;          /* Fixed height of 320px */
+                object-fit: cover;      /* Ensures images cover the area without distortion */
+                border-radius: 8px;     /* Optional: Adds rounded corners */
+                transition: transform 0.3s ease;  /* Smooth transition for hover effect */
+            }
+            
+            .work-samples .item img:hover {
+                transform: scale(1.1);  /* Slight zoom effect on hover */
+            }
+            
+            
+            
+                    .about {
+                        text-align: center;
+                    }
+            
+                    .contact-form {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        background: white;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    }
+            
+                    .contact-form label {
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: bold;
+                    }
+            
+                    .contact-form input,
+                    .contact-form textarea {
+                        width: 100%;
+                        padding: 10px;
+                        margin-bottom: 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                    }
+            
+                    .contact-form input[type="submit"] {
+                        background-color: #333;
+                        color: white;
+                        border: none;
+                        cursor: pointer;
+                        padding: 10px 20px;
+                    }
+            
+                    .contact-form input[type="submit"]:hover {
+                        background-color: #555;
+                    }
+            
+                    footer {
+                        text-align: center;
+                        padding: 20px 0;
+                        background-color: #333;
+                        color: white;
+                        margin-top: 20px;
+                    }
+            
+            
+                    .work-samples .item {
+                text-align: center;
+                margin: 15px;
+            }
+            
+            .work-samples .item h3 {
+                margin-top: 10px;
+                font-size: 18px;
+                color: #333;
+                font-weight: bold;
+            }
+            
+            
+            /* General Footer Styling */
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                padding: 50px 0;
+                font-size: 14px;
+                text-align: center;
+            }
+            
+            /* Footer Container */
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+            
+            /* Footer Links */
+            .footer-links {
+                width: 30%;
+                margin-bottom: 20px;
+            }
+            
+            .footer-links h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+            
+            .footer-links ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .footer-links ul li {
+                margin: 10px 0;
+            }
+            
+            .footer-links a {
+                color: #ecf0f1;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            
+            .footer-links a:hover {
+                color: #ff8c00;
+            }
+            
+            /* About Developer Section */
+            .footer-developer {
+                width: 30%;
+                margin-bottom: 20px;
+            }
+            
+            .footer-developer h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+            
+            .footer-developer p {
+                font-size: 14px;
+                line-height: 1.6;
+                color: #ecf0f1;
+            }
+            
+            /* Footer Social Media */
+            .footer-social {
+                width: 30%;
+                margin-bottom: 20px;
+            }
+            
+            .footer-social h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+            
+            .social-icons {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .social-icons a {
+                color: #ecf0f1;
+                transition: transform 0.3s ease;
+            }
+            
+            .social-icons a:hover {
+                transform: scale(1.1);
+            }
+            
+            /* Footer Copyright */
+            .footer-copyright {
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .footer-copyright p {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .footer-content {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            
+                .footer-links, .footer-developer, .footer-social {
+                    width: 100%;
+                    text-align: center;
+                }
+            
+                .social-icons {
+                    margin-top: 15px;
+                }
+            }
+            
+            
+                </style>
+            </head>
+            <body>
+            
+                <header>
+                    <h1>Developer Portfolio</h1>
+                    <p>Showcasing my work, journey, and how to reach me.</p>
+                </header>
+            
+                <nav>
+                    <ul>
+                        <li><a href="#" onclick="showSection('work')">Work Samples</a></li>
+                        <li><a href="#" onclick="showSection('about')">About Me</a></li>
+                        <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+                    </ul>
+                </nav>
+            
+                <!-- Work Samples Section -->
+            <div id="work" class="section active">
+                <h2>Work Samples</h2>
+                <div class="work-samples">
+                    <!-- Image 1 -->
+                    <div class="item">
+                        <img src="q1.avif" alt="Sample 1">
+                        <h3>Project 1</h3>
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="item">
+                        <img src="q2.avif" alt="Sample 2">
+                        <h3>Project 2</h3>
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="item">
+                        <img src="q5.avif" alt="Sample 3">
+                        <h3>Project 3</h3>
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="item">
+                        <img src="q6.webp" alt="Sample 4">
+                        <h3>Project 4</h3>
+                    </div>
+                    <!-- Image 5 -->
+                    <div class="item">
+                        <img src="q7.webp" alt="Sample 5">
+                        <h3>Project 5</h3>
+                    </div>
+                    <!-- Image 6 -->
+                    <div class="item">
+                        <img src="q8.avif" alt="Sample 6">
+                        <h3>Project 6</h3>
+                    </div>
+                    <!-- Image 7 -->
+                    <div class="item">
+                        <img src="q9.avif" alt="Sample 7">
+                        <h3>Project 7</h3>
+                    </div>
+                    <!-- Image 8 -->
+                    <div class="item">
+                        <img src="q10.avif" alt="Sample 8">
+                        <h3>Project 8</h3>
+                    </div>
+                    <!-- Image 9 -->
+                    <div class="item">
+                        <img src="q11.avif" alt="Sample 9">
+                        <h3>Project 9</h3>
+                    </div>
+                    <!-- Image 10 -->
+                    <div class="item">
+                        <img src="q12.avif" alt="Sample 10">
+                        <h3>Project 10</h3>
+                    </div>
+                    <!-- Image 11 -->
+                    <div class="item">
+                        <img src="q13.avif" alt="Sample 11">
+                        <h3>Project 11</h3>
+                    </div>
+                    <!-- Image 12 -->
+                    <div class="item">
+                        <img src="q14.avif" alt="Sample 12">
+                        <h3>Project 12</h3>
+                    </div>
+                    <!-- Image 13 -->
+                    <div class="item">
+                        <img src="q16.avif" alt="Sample 13">
+                        <h3>Project 13</h3>
+                    </div>
+                    <!-- Image 14 -->
+                    <div class="item">
+                        <img src="q17.avif" alt="Sample 14">
+                        <h3>Project 14</h3>
+                    </div>
+                    <!-- Image 15 -->
+                    <div class="item">
+                        <img src="q19.avif" alt="Sample 15">
+                        <h3>Project 15</h3>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+                <!-- About Section -->
+            <div id="about" class="section">
+                <h2>About Me</h2>
+                <p>Hello! I'm a passionate and skilled developer with expertise in both front-end and back-end technologies. I specialize in creating responsive, interactive, and user-friendly websites and web applications. Below, I'll share more about my skills, the technologies I use, and my development approach.</p><br>
+            
+                <h3>My Development Journey</h3>
+                <p>I've been on an exciting journey as a web developer, constantly learning and evolving. Over the years, I've gained hands-on experience in building everything from simple websites to complex applications. My goal is to combine my love for coding with my creativity to build solutions that are both functional and aesthetically pleasing.</p><br>
+            
+                <h3>Technologies & Tools</h3>
+                <p>I work with a variety of technologies that help me build robust, scalable, and visually stunning web applications. Here's a breakdown of the key tools I use:</p><br>
+            
+                <h4>HTML (HyperText Markup Language)</h4>
+                <p>HTML is the foundation of any web page, and I use it to structure content in a clear and semantic way. I am proficient in creating clean, organized HTML that supports accessibility and SEO. Whether it's simple page layouts or complex content structures, HTML is always my starting point.</p><br>
+            
+                <h4>CSS (Cascading Style Sheets)</h4>
+                <p>CSS allows me to style and design beautiful, responsive web pages. I use it to create layouts, manage colors, fonts, and positioning, and ensure a consistent visual design across different screen sizes. With CSS, I focus on making my websites both attractive and functional. I also use advanced techniques like Flexbox and Grid to create complex layouts.</p><br>
+            
+                <h4>JavaScript</h4>
+                <p>JavaScript adds interactivity to my websites. I use it to manipulate the DOM, create dynamic content, and enhance user experience. From simple form validation to creating complex web applications, JavaScript is an essential part of my development toolkit. I’m also skilled in using JavaScript frameworks like React to build interactive and scalable applications.</p><br>
+            
+                <h4>Bootstrap</h4>
+                <p>Bootstrap is my go-to framework for creating responsive and mobile-first websites quickly. With its extensive collection of pre-built components and utilities, I can easily create modern, functional designs. I often use Bootstrap’s grid system and built-in classes to speed up development and ensure that my websites work seamlessly across devices.</p><br>
+                <h3>Why I Love Web Development</h3>
+                <p>What drives me in web development is the challenge of turning ideas into reality. Whether it’s designing a sleek interface or building a complex back-end system, there’s always something new to learn and explore. I take pride in delivering quality websites that not only look great but also provide excellent user experiences. I believe in writing clean, maintainable code, and I am always eager to improve my skills and take on new challenges.</p><br>
+            
+                <h3>What I Can Do</h3>
+                <ul>
+                    <li>Build responsive, user-friendly websites using HTML, CSS, and JavaScript.</li>
+                    <li>Create dynamic web applications with React and other front-end frameworks.</li>
+                    <li>Develop robust back-end systems using Node.js, Express, and databases like MySQL and MongoDB.</li>
+                    <li>Ensure websites are optimized for performance, speed, and SEO.</li>
+                    <li>Use tools like Git and GitHub to collaborate and manage projects effectively.</li>
+                </ul><br>
+            
+                <h3>Let's Collaborate!</h3>
+                <p>If you're looking for a developer who is passionate about creating high-quality websites and applications, let's connect! I’m always excited to take on new projects and collaborate with clients and teams to build amazing digital experiences. Explore my portfolio to see some of my past work, and feel free to reach out if you’d like to work together!</p>
+            </div>
+            
+                <!-- Contact Section -->
+                <div id="contact" class="section">
+                    <h2>Contact Me</h2>
+                    <form class="contact-form" onsubmit="submitForm(event)">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+            
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+            
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+            
+                        <input type="submit" value="Send Message">
+                    </form>
+                </div>
+            
+               <!-- Footer Section -->
+            <footer>
+                <div class="footer-content">
+                    <!-- Footer Links -->
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Me</a></li>
+                            <li><a href="#work">Work Samples</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+            
+                    <!-- About Developer -->
+                    <div class="footer-developer">
+                        <h4>About the Developer</h4>
+                        <p>I'm a passionate web developer, specializing in creating responsive and user-friendly web applications. With expertise in HTML, CSS, JavaScript, and modern frameworks like React, I strive to bring innovative ideas to life. My goal is to craft digital experiences that not only look great but also provide seamless functionality for users.</p>
+                    </div>
+            
+                    <!-- Footer Social Media -->
+                    <div class="footer-social">
+                        <h4>Connect with Me</h4>
+                        <div class="social-icons">
+                            <a href="https://github.com/yourgithub" target="_blank">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub">
+                            </a>
+                            <a href="https://linkedin.com/in/yourlinkedin" target="_blank">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
+                            </a>
+                            <a href="https://twitter.com/yourtwitter" target="_blank">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/twitter.png" alt="Twitter">
+                            </a>
+                            <a href="https://facebook.com/yourfacebook" target="_blank">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/facebook.png" alt="Facebook">
+                            </a>
+                        </div>
+                    </div>
+            
+                    <!-- Footer Copyright -->
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 Developer Portfolio. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+            
+            
+            
+                <script>
+                    function showSection(sectionId) {
+                        document.querySelectorAll('.section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        document.getElementById(sectionId).classList.add('active');
+                    }
+            
+                    function submitForm(event) {
+                        event.preventDefault();
+                        alert('Thank you for reaching out! I will get back to you soon.');
+                    }
+                </script>
+            </body>
+            </html>
+            
